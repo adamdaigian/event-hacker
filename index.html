@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Event Hunt</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-app="eventHunt" ng-controller="MainCtrl">
+    <div>
+      <form ng-submit="addPost()">
+        <input placeholder="title" type="text" ng-model="title"></input>
+        <input placeholder="link" type="text" ng-model="link"></input>
+        <button type="submit">Post</button>
+      </form>
+    </div>
+    <div>
+      <div ng-repeat="post in posts | orderBy:'-upvotes'">
+        <span ng-click="incrementalUpvotes(post)">^</span>
+        {{post.upvotes}}
+        <span>
+          {{post.title}} 
+        </span><br>
+        <span>
+          {{post.link}}
+        </span>
+      </div>
+    </div>
+  </body>
+</html>
