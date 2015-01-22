@@ -38,8 +38,8 @@
           
           <div class="ul" ng-repeat="post in posts | orderBy:'-upvotes'">
             <div class="li">
-              <span ng-click="incrementalUpvotes(post)">⬆</span>
-              <span ng-click="incrementalDownvotes(post)">⬇</span>
+              <span ng-click="incrementalUpvotes(post)">&#9650</span>
+              <span ng-click="incrementalDownvotes(post)">&#9660</span>
               {{post.upvotes}} - upvotes: 
               <a ng-show="post.link" href="{{post.link}}">
                 {{post.title}}
