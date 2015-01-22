@@ -1,45 +1,48 @@
 <html>
-  <head>
-    <title>Event Hunt</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+<head>
+<title>Event Hunt</title>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
 
-    <script src="app.js"></script>
-  </head>
+<script src="app.js"></script>
+</head>
+  
   <body ng-app="eventHunt" ng-controller="MainCtrl">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <ui-view></ui-view>
-      </div>
-    <div>
-      <form ng-submit="addPost()"
-        style="margin-top:30px;">
-        <h3>Add a new post</h3>
-
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Title"
-            ng-model="title">
-          </input>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <h2>Add Post</h2>
+          <form ng-submit="addPost()">
+            
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Title" ng-model="title">
+              </input>
+            </div>
+            
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Link" ng-model="link">
+              </input>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Post</button>
+          
+          </form>
+          
+          <div class="ul" ng-repeat="post in posts | orderBy:'-upvotes'">
+            <div class="li">
+              <span ng-click="incrementalUpvotes(post)">^</span>
+              {{post.upvotes}} - upvotes: 
+              <a ng-show="post.link" href="{{post.link}}">
+                {{post.title}}
+              </a>
+              <span ng-hide="post.link">
+                {{post.title}}
+              </span>
+            </div>
+          </div>
+        
         </div>
-        <div style="padding-top:10px;"></div>
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Link"
-            ng-model="link">
-          </input>
-        </div>
-        <div style="padding-top:10px;"></div>
-        <button type="submit" class="btn btn-primary">Post</button>
-      </form>
+      </div>    
     </div>
-    <div ng-repeat="post in posts | orderBy:'-upvotes'">
-  <span ng-click="incrementUpvotes(post)">^</span>
-  <a ng-show="post.link" href="{{post.link}}">
-    {{post.title}}
-  </a>
-  <span ng-hide="post.link">
-    {{post.title}}
-  </span>
-  - upvotes: {{post.upvotes}}
-</div>
   </body>
 </html>
